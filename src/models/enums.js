@@ -1,0 +1,19 @@
+export const OrderStatus = Object.freeze({
+  NEW: 'NEW',
+  VALIDATING: 'VALIDATING',
+  VALIDATED: 'VALIDATED',
+  PAID: 'PAID',
+  IN_QUEUE: 'IN_QUEUE',
+  PRINTING: 'PRINTING',
+  POST_PROCESSING: 'POST_PROCESSING',
+  READY: 'READY',
+  DELIVERED: 'DELIVERED',
+});
+
+export const PrinterStatus = Object.freeze({
+  IDLE: 'IDLE',
+  PRINTING: 'PRINTING',
+  MAINTENANCE: 'MAINTENANCE',
+  ERROR: 'ERROR',
+  OFFLINE: 'OFFLINE',
+});
