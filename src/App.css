@@ -1,38 +1,397 @@
-.App {
+:root {
+  --bg: #f5f7fb;
+  --surface: #ffffff;
+  --surface-soft: #eef3f8;
+  --line: #d8e0ea;
+  --text: #142033;
+  --muted: #637083;
+  --brand: #0f766e;
+  --brand-dark: #0b5f59;
+  --accent: #b45309;
+  --danger: #b42318;
+  --success: #157f3b;
+  --shadow: 0 12px 30px rgba(20, 32, 51, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.app-shell {
+  min-height: 100vh;
+  padding: 28px;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.topbar,
+.toolbar,
+.button-row,
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.topbar {
+  margin: 0 auto 20px;
+  max-width: 1320px;
+}
+
+.eyebrow,
+.card-header p {
+  margin: 0 0 4px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  letter-spacing: 0;
+}
+
+h1 {
+  font-size: 30px;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+.metrics-grid,
+.tabs,
+.workspace {
+  margin: 0 auto;
+  max-width: 1320px;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.metric,
+.panel,
+.order-card,
+.printer-row {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.metric {
+  padding: 18px;
+}
+
+.metric span {
+  display: block;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.metric strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 28px;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+.tab,
+.ghost-button,
+.primary-button {
+  min-height: 40px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.tab {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text);
+  padding: 0 16px;
+  white-space: nowrap;
+}
+
+.tab.active {
+  border-color: var(--brand);
+  background: var(--brand);
+  color: #ffffff;
+}
+
+.workspace {
+  padding-bottom: 32px;
+}
+
+.two-column {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.65fr);
+  gap: 16px;
+}
+
+.panel,
+.order-card {
+  padding: 20px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.form-grid h2,
+.form-grid .wide {
+  grid-column: 1 / -1;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+}
+
+.field span {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  min-height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+  color: var(--text);
+  padding: 8px 10px;
+}
+
+textarea {
+  min-height: 92px;
+  resize: vertical;
+}
+
+.primary-button,
+.ghost-button {
+  border: 1px solid transparent;
+  padding: 0 14px;
+}
+
+.primary-button {
+  background: var(--brand);
+  color: #ffffff;
+}
+
+.primary-button:hover {
+  background: var(--brand-dark);
+}
+
+.primary-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.ghost-button {
+  border-color: var(--line);
+  background: var(--surface);
+  color: var(--text);
+}
+
+.wide {
+  width: 100%;
+}
+
+.price-preview {
+  margin: 18px 0;
+  padding: 18px;
+  border-radius: 8px;
+  background: var(--surface-soft);
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.validation-list {
+  margin: 12px 0 0;
+  padding-left: 18px;
+  color: var(--danger);
+}
+
+.validation-list.compact {
+  font-size: 13px;
+}
+
+.success-text {
+  color: var(--success);
+  font-weight: 700;
+}
+
+.toolbar {
+  margin-bottom: 14px;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.order-card {
+  display: grid;
+  gap: 16px;
+}
+
+.details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 16px;
+  margin: 0;
+}
+
+.details div {
+  min-width: 0;
+}
+
+.details dt {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.details dd {
+  margin: 3px 0 0;
+  overflow-wrap: anywhere;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  border-radius: 999px;
+  padding: 0 10px;
+  background: var(--surface-soft);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.status-validated,
+.status-paid,
+.status-idle,
+.status-ready,
+.status-delivered {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.status-in_queue,
+.status-printing {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.status-validating,
+.status-post_processing,
+.status-maintenance {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.status-error,
+.status-offline {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.printer-grid {
+  display: grid;
+  gap: 8px;
+}
+
+.printer-row {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) 120px 120px 100px;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  box-shadow: none;
+}
+
+.printer-row div {
+  display: grid;
+  gap: 2px;
+}
+
+.printer-row span {
+  color: var(--muted);
+}
+
+.empty-state {
+  margin: 0;
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--muted);
+  padding: 28px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+@media (max-width: 920px) {
+  .app-shell {
+    padding: 18px;
+  }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .metrics-grid,
+  .two-column,
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .printer-row {
+    grid-template-columns: 1fr 110px;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media (max-width: 620px) {
+  .form-grid,
+  .details {
+    grid-template-columns: 1fr;
   }
-  to {
-    transform: rotate(360deg);
+
+  h1 {
+    font-size: 24px;
   }
 }

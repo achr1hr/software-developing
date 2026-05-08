@@ -1,12 +1,25 @@
 export class QCReport {
   /**
-   * @param {{ reportId?: string, isPassed?: boolean, comments?: string, photoUrl?: string }} params
+   * @param {{
+   *   reportId?: string,
+   *   isPassed?: boolean,
+   *   comments?: string,
+   *   photoUrl?: string,
+   *   createdAt?: Date | string
+   * }} params
    */
-  constructor({ reportId, isPassed = false, comments = '', photoUrl = '' } = {}) {
+  constructor({
+    reportId,
+    isPassed = false,
+    comments = '',
+    photoUrl = '',
+    createdAt = new Date(),
+  } = {}) {
     this.reportId = reportId ?? crypto.randomUUID();
     this.isPassed = isPassed;
     this.comments = comments;
     this.photoUrl = photoUrl;
+    this.createdAt = createdAt instanceof Date ? createdAt : new Date(createdAt);
   }
 
   /**
