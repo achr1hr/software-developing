@@ -7,15 +7,33 @@ export class PrintModel {
    *   fileName: string,
    *   stlPath: string,
    *   volume_cm3: number,
-   *   size: Dimensions | { x_mm: number, y_mm: number, z_mm: number }
+   *   size: Dimensions | { x_mm: number, y_mm: number, z_mm: number },
+   *   material?: string,
+   *   color?: string,
+   *   quantity?: number,
+   *   validationErrors?: string[]
    * }} params
    */
-  constructor({ id, fileName, stlPath, volume_cm3, size }) {
+  constructor({
+    id,
+    fileName,
+    stlPath,
+    volume_cm3,
+    size,
+    material = 'PLA',
+    color = 'Natural',
+    quantity = 1,
+    validationErrors = [],
+  }) {
     this.id = id ?? crypto.randomUUID();
     this.fileName = fileName;
     this.stlPath = stlPath;
     this.volume_cm3 = volume_cm3;
     this.size = size instanceof Dimensions ? size : new Dimensions(size.x_mm, size.y_mm, size.z_mm);
+    this.material = material;
+    this.color = color;
+    this.quantity = quantity;
+    this.validationErrors = validationErrors;
     /** @type {import('./PrintJob').PrintJob | null} */
     this.printJob = null;
   }

@@ -1,0 +1,19 @@
+flowchart TD
+    A[Клиент или менеджер] -->|данные заказа| B[Форма создания заказа]
+    B -->|создать Order NEW| C[Локальное состояние приложения]
+    B -->|параметры STL-модели| D[PrintModel]
+    D -->|валидация имени, объема, габаритов| E{Модель валидна?}
+    E -->|нет| F[Ошибки валидации]
+    F --> B
+    E -->|да| G[Order VALIDATED]
+    G -->|объем, материал, количество| H[Pricing Engine MVP]
+    H -->|totalPrice| C
+    I[Менеджер] -->|подтвердить оплату| J[Order PAID]
+    J -->|создать PrintJob| K[Очередь печати IN_QUEUE]
+    L[Оператор] -->|выбрать IDLE принтер| M[Printer.assignJob]
+    M -->|назначено| N[Order PRINTING]
+    N -->|печать завершена| O[Order POST_PROCESSING]
+    P[Инженер] -->|QC результат и комментарий| Q[QCReport]
+    Q -->|passed=true| R[Order READY]
+    Q -->|passed=false| O
+    R -->|выдача клиенту| S[Order DELIVERED]
